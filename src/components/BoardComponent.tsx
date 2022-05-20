@@ -1,6 +1,7 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 // Models
 import { Board } from "../models/Board";
+import { Cell } from "../models/Cell";
 // Components
 import CellComponent from "./CellComponent";
 
@@ -10,12 +11,35 @@ interface BoardProps {
 }
 
 const BoardComponent: FC<BoardProps> = ({ board, setBoard }) => {
+  const [selectedCell, setSelectedCell] = useState<Cell | null>();
+
+  function click(cell: Cell) {
+    if (cell.figure) {
+      setSelectedCell(cell);
+    }
+  }
+
+  function hightLightCells() {
+    board.hightLightCells(selectedCell);
+    updateBoard();
+  }
+
+  function updateBoard() {
+    const newBoard = board.getCopyBoard();
+    setBoard(newBoard);
+  }
+
   return (
     <div className="board">
       {board.cells.map((row, index) => (
         <React.Fragment key={index}>
           {row.map((cell) => (
-            <CellComponent cell={cell} key={cell.id}></CellComponent>
+            <CellComponent
+              click={click}
+              cell={cell}
+              key={cell.id}
+              selected={cell.x === selectedCell?.x && cell.y === selectedCell.y}
+            ></CellComponent>
           ))}
         </React.Fragment>
       ))}
