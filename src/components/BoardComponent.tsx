@@ -19,10 +19,10 @@ const BoardComponent: FC<BoardProps> = ({ board, setBoard }) => {
     }
   }
 
-  function hightLightCells() {
-    board.hightLightCells(selectedCell);
-    updateBoard();
-  }
+  // function hightLightCells() {
+  //   board.hightLightCells(selectedCell);
+  //   updateBoard();
+  // }
 
   function updateBoard() {
     const newBoard = board.getCopyBoard();
