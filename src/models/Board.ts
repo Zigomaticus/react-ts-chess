@@ -1,5 +1,7 @@
 import { Cell } from "./Cell";
 import { Colors } from "./Colors";
+import { Bishop } from "./figures/Bishop";
+import { Pawn } from "./figures/Pawn";
 import { Queen } from "./figures/Queen";
 
 export class Board {
@@ -24,7 +26,29 @@ export class Board {
     return this.cells[y][x];
   }
 
+  private addPawns() {
+    for (let i = 0; i < 8; i++) {
+      new Pawn(Colors.BLACK, this.getCell(i, 1));
+      new Pawn(Colors.WHITE, this.getCell(i, 6));
+    }
+  }
+
+  private addKings() {}
+
+  private addQueens() {}
+
+  private addBishops() {}
+
+  private addKnights() {}
+
+  private addRooks() {}
+
   public addFigures() {
-    new Queen(Colors.WHITE, this.getCell(3, 3));
+    this.addPawns();
+    this.addKings();
+    this.addQueens();
+    this.addBishops();
+    this.addKnights();
+    this.addRooks();
   }
 }

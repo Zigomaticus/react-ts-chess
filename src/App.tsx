@@ -22,7 +22,6 @@ function App() {
   return (
     <div className="App">
       <BoardComponent board={board} setBoard={setBoard} />
-      <div className="div">123</div>
     </div>
   );
 }
